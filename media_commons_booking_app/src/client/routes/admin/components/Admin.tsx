@@ -10,6 +10,7 @@ import { PAUsers } from './PAUsers';
 import { PagePermission } from '../../../../types';
 import SafetyTrainedUsers from './SafetyTraining';
 import Settings from './Settings';
+import { Departments } from './Departments';
 
 // This is a wrapper for google.script.run that lets us use promises.
 
@@ -111,15 +112,14 @@ export default function Admin() {
             </li>
             <li className="mr-2">
               <a
-                onClick={() => setTab('bookings')}
-                aria-current="page"
+                onClick={() => setTab('departments')}
                 className={`${
-                  tab === 'bookings'
+                  tab === 'departments'
                     ? 'inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500'
                     : 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 '
                 }`}
               >
-                Department
+                Departments
               </a>
             </li>
             <li className="mr-2">
@@ -142,6 +142,7 @@ export default function Admin() {
           {tab === 'liaesons' && <Liaisons />}
           {tab === 'bookings' && <Bookings isAdminView={true} />}
           {tab === 'settings' && <Settings />}
+          {tab === 'departments' && <Departments />}
         </div>
       )}
     </div>
