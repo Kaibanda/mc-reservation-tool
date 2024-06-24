@@ -37,6 +37,7 @@ When developing locally, please follow the flow below.
    ```bash
    npm install
    ```
+   
 4. **Upload Local Code to Google App Script**:
 
    ```bash
