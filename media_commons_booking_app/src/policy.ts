@@ -29,6 +29,7 @@ export enum TableNames {
   ROOMS = 'rooms',
   SAFETY_TRAINING = 'safety_training_users',
   SETTINGS = 'settings',
+  DEPARTMENT = 'Department'
 }
 
 export enum ActiveSheetBookingStatusColumns {
