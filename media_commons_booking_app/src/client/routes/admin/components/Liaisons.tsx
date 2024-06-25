@@ -115,7 +115,7 @@ export const Liaisons = () => {
         reloadLiaisonEmails={reloadLiaisonUsers}
       />
       <EmailListTable
-        tableName={getLiaisonTableName()} 
+        tableName={getLiaisonTableName()}
         userList={liaisonUsers}
         userListRefresh={reloadLiaisonUsers}
         columnFormatters={{ createdAt: formatDate }}

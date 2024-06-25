@@ -1,8 +1,6 @@
-//import ListTable from './ListTable';
-import ListTable from '../../components/ListTable';
+import ListTable from './ListTable';
 import React from 'react';
-//import { TableNames } from '../../../policy';
-import { TableNames } from '../../../../policy';
+import { TableNames } from '../../../policy';
 
 interface DepartmentField {
   name: string;

@@ -1,8 +1,7 @@
 
 import React, { useContext, useMemo, useState } from 'react';
 import { DatabaseContext } from '../../components/Provider';
-//import DepartmentListTable from '../../components/DepartmentListTable';
-import DepartmentListTable from '../../booking/components/DepartmentListTable';
+import DepartmentListTable from '../../components/DepartmentListTable';
 import Loading from '../../../utils/Loading';
 import { formatDate } from '../../../utils/date';
 import { TableNames, getLiaisonTableName } from '../../../../policy';
@@ -97,7 +96,6 @@ const AddDepartmentForm = ({ departmentList, reloadDepartments }) => {
     </div>
   );
 };
-
 export default AddDepartmentForm
 
 export const Departments = () => {
