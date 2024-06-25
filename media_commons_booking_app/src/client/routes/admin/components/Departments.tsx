@@ -96,9 +96,6 @@ const AddDepartmentForm = ({ departmentList, reloadDepartments }) => {
     </div>
   );
 };
-
-export default AddDepartmentForm;
-
 export const Departments = () => {
     const { departments, reloadDepartments } = useContext(DatabaseContext);
   
@@ -150,6 +147,3 @@ export const Departments = () => {
       </div>
     );
   };
-  
-  //export DepartmentListTable;
-  
