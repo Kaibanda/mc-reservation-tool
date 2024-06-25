@@ -112,14 +112,14 @@ export default function Admin() {
             </li>
             <li className="mr-2">
               <a
-                onClick={() => setTab('liaesons')}
+                onClick={() => setTab('departments')}
                 className={`${
-                  tab === 'liaesons'
+                  tab === 'departments'
                     ? 'inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500'
                     : 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 '
                 }`}
               >
-                Liaisons
+                Departments
               </a>
             </li>
             <li className="mr-2">
@@ -140,6 +140,7 @@ export default function Admin() {
           {tab === 'adminUsers' && <AdminUsers />}
           {tab === 'paUsers' && <PAUsers />}
           {tab === 'liaesons' && <Liaisons />}
+          {tab === 'departments' && <Departments />}
           {tab === 'bookings' && <Bookings isAdminView={true} />}
           {tab === 'settings' && <Settings />}
         </div>

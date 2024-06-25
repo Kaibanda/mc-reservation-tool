@@ -3,6 +3,7 @@ import {
   Ban,
   Booking,
   BookingStatus,
+  DepartmentType,
   LiaisonType,
   PaUser,
   PagePermission,
@@ -28,6 +29,7 @@ export interface DatabaseContextType {
   bookingsLoading: boolean;
   bookingStatuses: BookingStatus[];
   liaisonUsers: LiaisonType[];
+  departments: DepartmentType[];
   pagePermission: PagePermission;
   paUsers: PaUser[];
   roomSettings: RoomSetting[];
@@ -39,6 +41,7 @@ export interface DatabaseContextType {
   reloadBookings: () => Promise<void>;
   reloadBookingStatuses: () => Promise<void>;
   reloadLiaisonUsers: () => Promise<void>;
+  reloadDepartments: () => Promise<void>;
   reloadPaUsers: () => Promise<void>;
   reloadReservationTypes: () => Promise<void>;
   reloadSafetyTrainedUsers: () => Promise<void>;
@@ -52,6 +55,7 @@ export const DatabaseContext = createContext<DatabaseContextType>({
   bookingsLoading: true,
   bookingStatuses: [],
   liaisonUsers: [],
+  departments: [],
   pagePermission: PagePermission.BOOKING,
   paUsers: [],
   roomSettings: [],
@@ -63,6 +67,7 @@ export const DatabaseContext = createContext<DatabaseContextType>({
   reloadBookings: async () => {},
   reloadBookingStatuses: async () => {},
   reloadLiaisonUsers: async () => {},
+  reloadDepartments: async () => {},
   reloadPaUsers: async () => {},
   reloadReservationTypes: async () => {},
   reloadSafetyTrainedUsers: async () => {},
@@ -76,6 +81,8 @@ export const DatabaseProvider = ({ children }) => {
   const [bookingStatuses, setBookingStatuses] = useState<BookingStatus[]>([]);
   const [adminUsers, setAdminUsers] = useState<AdminUser[]>([]);
   const [liaisonUsers, setLiaisonUsers] = useState<LiaisonType[]>([]);
+  const [departments, setDepartment] = useState<DepartmentType[]>([]);
+
   const [paUsers, setPaUsers] = useState<PaUser[]>([]);
   const [roomSettings, setRoomSettings] = useState<RoomSetting[]>([]);
   const [safetyTrainedUsers, setSafetyTrainedUsers] = useState<
@@ -209,6 +216,12 @@ export const DatabaseProvider = ({ children }) => {
       .then((rows) => JSON.parse(rows) as LiaisonType[]);
     setLiaisonUsers(liaisons);
   };
+  const fetchDepartments = async () => {
+    const departments = await serverFunctions
+      .getAllActiveSheetRows(TableNames.DEPARTMENTS)
+      .then((rows) => JSON.parse(rows) as DepartmentType[]);
+    setDepartment(departments);
+  };
 
   const fetchRoomSettings = async () => {
     const settings = await serverFunctions
@@ -248,11 +261,13 @@ export const DatabaseProvider = ({ children }) => {
         safetyTrainedUsers,
         settings,
         userEmail,
+        departments,
         reloadAdminUsers: fetchAdminUsers,
         reloadBannedUsers: fetchBannedUsers,
         reloadBookings: fetchBookings,
         reloadBookingStatuses: fetchBookingStatuses,
         reloadLiaisonUsers: fetchLiaisonUsers,
+        reloadDepartments: fetchDepartments,
         reloadPaUsers: fetchPaUsers,
         reloadReservationTypes: fetchBookingReservationTypes,
         reloadSafetyTrainedUsers: fetchSafetyTrainedUsers,

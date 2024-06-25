@@ -101,6 +101,11 @@ export type LiaisonType = {
   department: string;
   createdAt: string;
 };
+export type DepartmentType = {
+  name: string;
+  tier: string;
+  createdAt: string;
+};
 
 export type PaUser = {
   email: string;
