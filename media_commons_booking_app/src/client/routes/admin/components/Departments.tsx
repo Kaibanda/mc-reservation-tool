@@ -1,10 +1,11 @@
 
 import React, { useContext, useMemo, useState } from 'react';
 import { DatabaseContext } from '../../components/Provider';
-import EmailListTable from '../../components/EmailListTable';
+//import DepartmentListTable from '../../components/DepartmentListTable';
+import DepartmentListTable from '../../booking/components/DepartmentListTable';
 import Loading from '../../../utils/Loading';
 import { formatDate } from '../../../utils/date';
-import { getLiaisonTableName } from '../../../../policy';
+import { TableNames, getLiaisonTableName } from '../../../../policy';
 import { serverFunctions } from '../../../utils/serverFunctions';
 
 const AddDepartmentForm = ({ departmentList, reloadDepartments }) => {
@@ -96,6 +97,9 @@ const AddDepartmentForm = ({ departmentList, reloadDepartments }) => {
     </div>
   );
 };
+
+export default AddDepartmentForm
+
 export const Departments = () => {
     const { departments, reloadDepartments } = useContext(DatabaseContext);
   
@@ -115,6 +119,7 @@ export const Departments = () => {
           reloadDepartments={reloadDepartments}
         />
         <DepartmentListTable
+        tableName = {TableNames.DEPARTMENTS}
           departmentList={departmentList}
           departmentListRefresh={reloadDepartments}
           columnFormatters={{ createdAt: formatDate }}
@@ -123,27 +128,3 @@ export const Departments = () => {
     );
   };
 
-  const DepartmentListTable = ({ departmentList, departmentListRefresh, columnFormatters }) => {
-    return (
-      <div className="mt-10 mr-10 ml-10">
-        <table className="min-w-full leading-normal">
-          <thead>
-            <tr>
-              <th>Department</th>
-              <th>Tier</th>
-              <th>Created At</th>
-            </tr>
-          </thead>
-          <tbody>
-            {departmentList.map((department, index) => (
-              <tr key={index}>
-                <td>{department.name}</td>
-                <td>{department.tier}</td>
-                <td>{columnFormatters.createdAt(department.createdAt)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
