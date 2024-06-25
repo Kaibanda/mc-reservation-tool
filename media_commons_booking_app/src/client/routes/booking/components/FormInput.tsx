@@ -55,14 +55,17 @@ const FormInput = ({ handleParentSubmit }) => {
     return sum + parseInt(room.capacity);
   }, 0);
 
-  const validateExpectedAttendance = (value) => {
+  const validateExpectedAttendance = (value, maxCapacity) => {
     const attendance = parseInt(value);
-    return (
-      (!isNaN(attendance) && attendance <= maxCapacity) ||
-      `Expected attendance exceeds maximum capacity of ${maxCapacity}`
-    );
+    if (isNaN(attendance) || attendance < 1) {
+      return 'Expected attendance must be at least 1';
+    }
+    if (attendance > maxCapacity) {
+      return `Expected attendance exceeds maximum capacity of ${maxCapacity}`;
+    }
+    return true;
   };
-
+  
   const validateSponsorEmail = (value: string) => {
     if (value === userEmail) {
       return 'Sponsor email cannot be your own email';
