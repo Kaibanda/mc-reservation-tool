@@ -5,6 +5,7 @@ import { BannedUsers } from './Ban';
 import { Bookings } from './Bookings';
 import { DatabaseContext } from '../../components/Provider';
 import { Liaisons } from './Liaisons';
+import { Departments } from './Departments';
 import Loading from '../../../utils/Loading';
 import { PAUsers } from './PAUsers';
 import { PagePermission } from '../../../../types';
@@ -95,6 +96,18 @@ export default function Admin() {
                 }`}
               >
                 Admin users
+              </a>
+            </li>
+            <li className="mr-2">
+              <a
+                onClick={() => setTab('liaesons')}
+                className={`${
+                  tab === 'liaesons'
+                    ? 'inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500'
+                    : 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 '
+                }`}
+              >
+                Liaisons
               </a>
             </li>
             <li className="mr-2">
